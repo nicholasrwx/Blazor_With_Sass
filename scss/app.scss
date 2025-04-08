@@ -1,0 +1,311 @@
+@import 'mixins';
+@import 'variables';
+
+body {
+    background-color: #b1bbb9;
+}
+
+.sectionOne {
+    display: grid;
+    width: 90vw;
+    height: 80vh;
+    margin: 2vh 5vw 2vh 5vw;
+    background-color: transparent;
+}
+
+.card {
+    &__container {
+        width: 16rem;
+        height: 18rem;
+        background: transparent;
+        margin: 0 auto;
+
+        &:hover {
+            .inner__card {
+                transform: rotate3d(-1, 1, 0, -180deg);
+            }
+        }
+    }
+}
+
+.inner {
+    &__card {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transition: all 500ms ease;
+        transform-style: preserve-3d;
+
+        &-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #F90048;
+            backface-visibility: hidden;
+        }
+
+        &-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #00F9B1;
+            backface-visibility: hidden;
+            transform: rotate3d(1, 1, 0, 180deg);
+        }
+    }
+}
+
+
+.sectionTwo {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "one two three" "four five six" "seven eight nine";
+    column-gap: 0.5rem;
+    row-gap: 0.5rem;
+    justify-self: center;
+    justify-items: center;
+    align-items: center;
+    width: 50rem;
+    height: 60rem;
+    border: solid;
+    border-width: 0.3rem;
+    border-color: black;
+}
+
+.summonTiles {
+    > div {
+
+        transform-style: preserve-3d;
+        transition: transform 0.8s;
+        opacity: 1;
+        @include colorsOnSummon($white, $teilGreen);
+
+        &.tile {
+            &__one {
+                transform: translate(0rem, 0rem);
+            }
+
+            &__two {
+                transform: translate(0rem, 0rem);
+                animation-delay: 0.1s;
+                transition-delay: 0.1s;
+            }
+
+            &__three {
+                transform: translate(0rem, 0rem);
+                animation-delay: 0.2s;
+                transition-delay: 0.2s;
+            }
+
+            &__four {
+                transform: translate(0rem, 0rem);
+                animation-delay: 0.3s;
+                transition-delay: 0.3s;
+            }
+
+            &__five {
+                transform: translate(0rem, 0rem);
+                animation-delay: 0.4s;
+                transition-delay: 0.4s;
+            }
+
+            &__six {
+                transform: translate(0rem, 0rem);
+                animation-delay: 0.5s;
+                transition-delay: 0.5s;
+            }
+
+            &__seven {
+                transform: translate(0rem, 0rem);
+                animation-delay: 0.6s;
+                transition-delay: 0.6s;
+            }
+
+            &__eight {
+                transform: translate(0rem, 0rem);
+                animation-delay: 0.7s;
+                transition-delay: 0.7s;
+            }
+
+            &__nine {
+                transform: translate(0rem, 0rem);
+                animation-delay: 0.8s;
+                transition-delay: 0.8s;
+            }
+        }
+    }
+}
+
+.dismissTiles {
+    > div {
+        transform-style: preserve-3d;
+        transition: transform 0.8s;
+        opacity: 0;
+        @include colorsOnDismissal($white);
+
+        &.tile {
+            &__one {
+                transform: translate(-30rem, -15rem);
+            }
+
+            &__two {
+                transform: translate(0rem, -15rem);
+                animation-delay: 0.1s;
+                transition-delay: 0.1s;
+            }
+
+            &__three {
+                transform: translate(30rem, -15rem);
+                animation-delay: 0.2s;
+                transition-delay: 0.2s;
+            }
+
+            &__four {
+                transform: translate(-30rem, 0rem);
+                animation-delay: 0.3s;
+                transition-delay: 0.3s;
+            }
+
+            &__five {
+                transform: translate(0rem, 0rem);
+                animation-delay: 0.4s;
+                transition-delay: 0.4s;
+            }
+
+            &__six {
+                transform: translate(30rem, 0rem);
+                animation-delay: 0.5s;
+                transition-delay: 0.5s;
+            }
+
+            &__seven {
+                transform: translate(-30rem, 15rem);
+                animation-delay: 0.6s;
+                transition-delay: 0.6s;
+            }
+
+            &__eight {
+                transform: translate(0rem, 15rem);
+                animation-delay: 0.7s;
+                transition-delay: 0.7s;
+            }
+
+            &__nine {
+                transform: translate(30rem, 15rem);
+                animation-delay: 0.8s;
+                transition-delay: 0.8s;
+            }
+        }
+    }
+}
+
+
+.tile {
+    &__one {
+        grid-area: one;
+        display: inline-block;
+        background-color: transparent;
+        opacity: 0;
+        width: 15rem;
+        height: 18rem;
+        border-radius: 2rem;
+        transform: translate(-30rem, -15rem);
+    }
+
+    &__two {
+        grid-area: two;
+        display: inline-block;
+        background-color: transparent;
+        opacity: 0;
+        width: 15rem;
+        height: 18rem;
+        border-radius: 2rem;
+        transform: translate(0rem, -15rem);
+    }
+
+    &__three {
+        grid-area: three;
+        display: inline-block;
+        background-color: transparent;
+        opacity: 0;
+        width: 15rem;
+        height: 18rem;
+        border-radius: 2rem;
+        transform: translate(30rem, -15rem);
+    }
+
+    &__four {
+        grid-area: four;
+        display: inline-block;
+        background-color: transparent;
+        opacity: 0;
+        width: 15rem;
+        height: 18rem;
+        border-radius: 2rem;
+        transform: translate(-30rem, 0rem);
+    }
+
+    &__five {
+        grid-area: five;
+        display: inline-block;
+        background-color: transparent;
+        opacity: 0;
+        width: 15rem;
+        height: 18rem;
+        border-radius: 2rem;
+        transition: transform 1s;
+    }
+
+    &__six {
+        grid-area: six;
+        display: inline-block;
+        background-color: transparent;
+        opacity: 0;
+        width: 15rem;
+        height: 18rem;
+        border-radius: 2rem;
+        transform: translate(30rem, 0rem);
+    }
+
+    &__seven {
+        grid-area: seven;
+        display: inline-block;
+        background-color: transparent;
+        opacity: 0;
+        width: 15rem;
+        height: 18rem;
+        border-radius: 2rem;
+        transform: translate(-30rem, 15rem);
+    }
+
+    &__eight {
+        grid-area: eight;
+        display: inline-block;
+        background-color: transparent;
+        opacity: 0;
+        width: 15rem;
+        height: 18rem;
+        border-radius: 2rem;
+        transform: translate(0rem, 15rem);
+    }
+
+    &__nine {
+        grid-area: nine;
+        display: inline-block;
+        background-color: transparent;
+        opacity: 0;
+        width: 15rem;
+        height: 18rem;
+        border-radius: 2rem;
+        transform: translate(30rem, 15rem);
+    }
+}
+
+    .sectionThree {
+        display: grid;
+        width: 90vw;
+        height: 80vh;
+        margin: 2vh 5vw 2vh 5vw;
+        background-color: transparent;
+    }

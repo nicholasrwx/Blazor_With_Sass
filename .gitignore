@@ -1,0 +1,7 @@
+.*/
+*.txt
+lib
+obj
+bin
+node_modules
+.vs

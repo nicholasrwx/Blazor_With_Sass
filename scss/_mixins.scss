@@ -1,0 +1,38 @@
+@mixin colorsOnSummon($fadeInColor, $finalColor, $duration: 0.6s) {
+
+    @keyframes fadeIn {
+        0% {
+            background-color: $fadeInColor;
+            opacity: 0;
+        }
+
+        99% {
+            background-color: $fadeInColor;
+            opacity: 1;
+        }
+
+        100% {
+            background-color: $finalColor;
+            opacity: 1;
+        }
+    }
+
+    animation: fadeIn $duration forwards;
+}
+
+@mixin colorsOnDismissal($fadeOutColor, $duration: 0.6s) {
+
+    @keyframes fadeOut {
+        0% {
+            background-color: $fadeOutColor;
+            opacity: 1;
+        }
+
+        100% {
+            background-color: $fadeOutColor;
+            opacity: 0;
+        }
+    }
+
+    animation: fadeOut $duration backwards;
+}
