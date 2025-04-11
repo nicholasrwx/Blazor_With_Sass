@@ -1,311 +1,333 @@
-@import 'mixins';
-@import 'variables';
+@import "mixins";
+@import "variables";
 
 body {
-    background-color: #b1bbb9;
+  background-color: #b1bbb9;
 }
 
-.sectionOne {
-    display: grid;
-    width: 90vw;
-    height: 80vh;
-    margin: 2vh 5vw 2vh 5vw;
-    background-color: transparent;
+.spacer {
+  display: inline-block;
+  width: 10rem;
+  height: 50rem;
+  background: transparent;
 }
-
-.card {
-    &__container {
-        width: 16rem;
-        height: 18rem;
-        background: transparent;
-        margin: 0 auto;
-
-        &:hover {
-            .inner__card {
-                transform: rotate3d(-1, 1, 0, -180deg);
-            }
-        }
-    }
-}
-
-.inner {
-    &__card {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        transition: all 500ms ease;
-        transform-style: preserve-3d;
-
-        &-front {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: #F90048;
-            backface-visibility: hidden;
-        }
-
-        &-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #00F9B1;
-            backface-visibility: hidden;
-            transform: rotate3d(1, 1, 0, 180deg);
-        }
-    }
-}
-
 
 .sectionTwo {
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: "one two three" "four five six" "seven eight nine";
-    column-gap: 0.5rem;
-    row-gap: 0.5rem;
-    justify-self: center;
-    justify-items: center;
-    align-items: center;
-    width: 50rem;
-    height: 60rem;
-    border: solid;
-    border-width: 0.3rem;
-    border-color: black;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "one two three" "four five six" "seven eight nine";
+  column-gap: 0.1rem;
+  row-gap: 0.1rem;
+  justify-self: center;
+  justify-items: center;
+  align-items: center;
+  width: 17rem;
+  height: 20rem;
+  border: solid;
+  border-width: 0.3rem;
+  border-color: black;
 }
 
 .summonTiles {
-    > div {
+  > div {
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
 
-        transform-style: preserve-3d;
-        transition: transform 0.8s;
-        opacity: 1;
-        @include colorsOnSummon($white, $teilGreen);
+    &.tile {
+      &__one {
+        @include summonTileProperties(
+          translate(0rem, 0rem),
+          5rem,
+          6rem,
+          0.4s,
+          0.4s
+        );
+        @include before(
+          rotate3d(-1, 1, 0, 180deg),
+          $redPink,
+          5rem,
+          6rem,
+          0.7rem,
+          "Please"
+        );
+        @include summonAfter($teilGreen, 5rem, 6rem, 0.7rem);
 
-        &.tile {
-            &__one {
-                transform: translate(0rem, 0rem);
-            }
-
-            &__two {
-                transform: translate(0rem, 0rem);
-                animation-delay: 0.1s;
-                transition-delay: 0.1s;
-            }
-
-            &__three {
-                transform: translate(0rem, 0rem);
-                animation-delay: 0.2s;
-                transition-delay: 0.2s;
-            }
-
-            &__four {
-                transform: translate(0rem, 0rem);
-                animation-delay: 0.3s;
-                transition-delay: 0.3s;
-            }
-
-            &__five {
-                transform: translate(0rem, 0rem);
-                animation-delay: 0.4s;
-                transition-delay: 0.4s;
-            }
-
-            &__six {
-                transform: translate(0rem, 0rem);
-                animation-delay: 0.5s;
-                transition-delay: 0.5s;
-            }
-
-            &__seven {
-                transform: translate(0rem, 0rem);
-                animation-delay: 0.6s;
-                transition-delay: 0.6s;
-            }
-
-            &__eight {
-                transform: translate(0rem, 0rem);
-                animation-delay: 0.7s;
-                transition-delay: 0.7s;
-            }
-
-            &__nine {
-                transform: translate(0rem, 0rem);
-                animation-delay: 0.8s;
-                transition-delay: 0.8s;
-            }
+        &:hover {
+          transform: rotate3d(-1, 1, 0, -180deg);
         }
+      }
+
+      &__two {
+        @include summonTileProperties(
+          translate(0rem, 0rem),
+          5rem,
+          6rem,
+          0.3s,
+          0.3s
+        );
+        @include before(
+          rotate3d(1, 0, 0, 180deg),
+          $redPink,
+          5rem,
+          6rem,
+          0.7rem
+        );
+        @include summonAfter($teilGreen, 5rem, 6rem, 0.7rem);
+
+        &:hover {
+          transform: rotate3d(-1, 0, 0, -180deg);
+        }
+      }
+
+      &__three {
+        @include summonTileProperties(
+          translate(0rem, 0rem),
+          5rem,
+          6rem,
+          0.4s,
+          0.4s
+        );
+        @include before(
+          rotate3d(1, 1, 0, 180deg),
+          $redPink,
+          5rem,
+          6rem,
+          0.7rem,
+          "Hire"
+        );
+        @include summonAfter($teilGreen, 5rem, 6rem, 0.7rem);
+
+        &:hover {
+          transform: rotate3d(1, 1, 0, -180deg);
+        }
+      }
+
+      &__four {
+        @include summonTileProperties(
+          translate(0rem, 0rem),
+          5rem,
+          6rem,
+          0.25s,
+          0.25s
+        );
+        @include before(
+          rotate3d(0, 1, 0, 180deg),
+          $redPink,
+          5rem,
+          6rem,
+          0.7rem
+        );
+        @include summonAfter($teilGreen, 5rem, 6rem, 0.7rem);
+
+        &:hover {
+          transform: rotate3d(0, 1, 0, -180deg);
+        }
+      }
+
+      &__five {
+        @include summonTileProperties(
+          translate(0rem, 0rem),
+          5rem,
+          6rem,
+          0.2s,
+          0.2s
+        );
+        @include before(
+          rotate3d(1, 0, 0, 180deg),
+          $redPink,
+          5rem,
+          6rem,
+          0.7rem,
+          "Me"
+        );
+        @include summonAfter($teilGreen, 5rem, 6rem, 0.7rem);
+
+        &:hover {
+          transform: rotate3d(1, 0, 0, -180deg);
+        }
+      }
+
+      &__six {
+        @include summonTileProperties(
+          translate(0rem, 0rem),
+          5rem,
+          6rem,
+          0.25s,
+          0.25s
+        );
+        @include before(
+          rotate3d(0, 1, 0, -180deg),
+          $redPink,
+          5rem,
+          6rem,
+          0.7rem
+        );
+        @include summonAfter($teilGreen, 5rem, 6rem, 0.7rem);
+
+        &:hover {
+          transform: rotate3d(0, 1, 0, 180deg);
+        }
+      }
+
+      &__seven {
+        @include summonTileProperties(
+          translate(0rem, 0rem),
+          5rem,
+          6rem,
+          0.35s,
+          0.35s
+        );
+        @include before(
+          rotate3d(-1, -1, 0, 180deg),
+          $redPink,
+          5rem,
+          6rem,
+          0.7rem
+        );
+        @include summonAfter($teilGreen, 5rem, 6rem, 0.7rem);
+
+        &:hover {
+          transform: rotate3d(-1, -1, 0, -180deg);
+        }
+      }
+
+      &__eight {
+        @include summonTileProperties(
+          translate(0rem, 0rem),
+          5rem,
+          6rem,
+          0.3s,
+          0.3s
+        );
+        @include before(
+          rotate3d(1, 0, 0, 180deg),
+          $redPink,
+          5rem,
+          6rem,
+          0.7rem
+        );
+        @include summonAfter($teilGreen, 5rem, 6rem, 0.7rem);
+
+        &:hover {
+          transform: rotate3d(1, 0, 0, -180deg);
+        }
+      }
+
+      &__nine {
+        @include summonTileProperties(
+          translate(0rem, 0rem),
+          5rem,
+          6rem,
+          0.35s,
+          0.35s
+        );
+        @include before(
+          rotate3d(1, -1, 0, -180deg),
+          $redPink,
+          5rem,
+          6rem,
+          0.7rem,
+          ":)"
+        );
+        @include summonAfter($teilGreen, 5rem, 6rem, 0.7rem);
+
+        &:hover {
+          transform: rotate3d(1, -1, 0, 180deg);
+        }
+      }
     }
+  }
 }
 
 .dismissTiles {
-    > div {
-        transform-style: preserve-3d;
-        transition: transform 0.8s;
-        opacity: 0;
-        @include colorsOnDismissal($white);
+  > div {
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
 
-        &.tile {
-            &__one {
-                transform: translate(-30rem, -15rem);
-            }
+    &.tile {
+      &__one {
+        @include dismissAfter();
+        @include dismissTileProperties(translate(-30rem, -15rem), 0.2s, 0.2s);
+      }
 
-            &__two {
-                transform: translate(0rem, -15rem);
-                animation-delay: 0.1s;
-                transition-delay: 0.1s;
-            }
+      &__two {
+        @include dismissAfter();
+        @include dismissTileProperties(translate(0rem, -15rem), 0.3s, 0.3s);
+      }
 
-            &__three {
-                transform: translate(30rem, -15rem);
-                animation-delay: 0.2s;
-                transition-delay: 0.2s;
-            }
+      &__three {
+        @include dismissAfter();
+        @include dismissTileProperties(translate(30rem, -15rem), 0.2s, 0.2s);
+      }
 
-            &__four {
-                transform: translate(-30rem, 0rem);
-                animation-delay: 0.3s;
-                transition-delay: 0.3s;
-            }
+      &__four {
+        @include dismissAfter();
+        @include dismissTileProperties(translate(-30rem, 0rem), 0.35s, 0.35s);
+      }
 
-            &__five {
-                transform: translate(0rem, 0rem);
-                animation-delay: 0.4s;
-                transition-delay: 0.4s;
-            }
+      &__five {
+        @include dismissAfter();
+        @include dismissTileProperties(translate(0rem, 0rem), 0.4s, 0.4s);
+      }
 
-            &__six {
-                transform: translate(30rem, 0rem);
-                animation-delay: 0.5s;
-                transition-delay: 0.5s;
-            }
+      &__six {
+        @include dismissAfter();
+        @include dismissTileProperties(translate(30rem, 0rem), 0.35s, 0.35s);
+      }
 
-            &__seven {
-                transform: translate(-30rem, 15rem);
-                animation-delay: 0.6s;
-                transition-delay: 0.6s;
-            }
+      &__seven {
+        @include dismissAfter();
+        @include dismissTileProperties(translate(-30rem, 15rem), 0.25s, 0.25s);
+      }
 
-            &__eight {
-                transform: translate(0rem, 15rem);
-                animation-delay: 0.7s;
-                transition-delay: 0.7s;
-            }
+      &__eight {
+        @include dismissAfter();
+        @include dismissTileProperties(translate(0rem, 15rem), 0.3s, 0.3s);
+      }
 
-            &__nine {
-                transform: translate(30rem, 15rem);
-                animation-delay: 0.8s;
-                transition-delay: 0.8s;
-            }
-        }
+      &__nine {
+        @include dismissAfter();
+        @include dismissTileProperties(translate(30rem, 15rem), 0.25s, 0.25s);
+      }
     }
+  }
 }
-
 
 .tile {
-    &__one {
-        grid-area: one;
-        display: inline-block;
-        background-color: transparent;
-        opacity: 0;
-        width: 15rem;
-        height: 18rem;
-        border-radius: 2rem;
-        transform: translate(-30rem, -15rem);
-    }
+  &__one {
+    @include tileProperties(translate(-30rem, -15rem), one);
+  }
 
-    &__two {
-        grid-area: two;
-        display: inline-block;
-        background-color: transparent;
-        opacity: 0;
-        width: 15rem;
-        height: 18rem;
-        border-radius: 2rem;
-        transform: translate(0rem, -15rem);
-    }
+  &__two {
+    @include tileProperties(translate(0rem, -15rem), two);
+  }
 
-    &__three {
-        grid-area: three;
-        display: inline-block;
-        background-color: transparent;
-        opacity: 0;
-        width: 15rem;
-        height: 18rem;
-        border-radius: 2rem;
-        transform: translate(30rem, -15rem);
-    }
+  &__three {
+    @include tileProperties(translate(30rem, -15rem), three);
+  }
 
-    &__four {
-        grid-area: four;
-        display: inline-block;
-        background-color: transparent;
-        opacity: 0;
-        width: 15rem;
-        height: 18rem;
-        border-radius: 2rem;
-        transform: translate(-30rem, 0rem);
-    }
+  &__four {
+    @include tileProperties(translate(-30rem, 0rem), four);
+  }
 
-    &__five {
-        grid-area: five;
-        display: inline-block;
-        background-color: transparent;
-        opacity: 0;
-        width: 15rem;
-        height: 18rem;
-        border-radius: 2rem;
-        transition: transform 1s;
-    }
+  &__five {
+    @include tileProperties(translate(0rem, 0rem), five);
+  }
 
-    &__six {
-        grid-area: six;
-        display: inline-block;
-        background-color: transparent;
-        opacity: 0;
-        width: 15rem;
-        height: 18rem;
-        border-radius: 2rem;
-        transform: translate(30rem, 0rem);
-    }
+  &__six {
+    @include tileProperties(translate(30rem, 0rem), six);
+  }
 
-    &__seven {
-        grid-area: seven;
-        display: inline-block;
-        background-color: transparent;
-        opacity: 0;
-        width: 15rem;
-        height: 18rem;
-        border-radius: 2rem;
-        transform: translate(-30rem, 15rem);
-    }
+  &__seven {
+    @include tileProperties(translate(-30rem, 15rem), seven);
+  }
 
-    &__eight {
-        grid-area: eight;
-        display: inline-block;
-        background-color: transparent;
-        opacity: 0;
-        width: 15rem;
-        height: 18rem;
-        border-radius: 2rem;
-        transform: translate(0rem, 15rem);
-    }
+  &__eight {
+    @include tileProperties(translate(0rem, 15rem), eight);
+  }
 
-    &__nine {
-        grid-area: nine;
-        display: inline-block;
-        background-color: transparent;
-        opacity: 0;
-        width: 15rem;
-        height: 18rem;
-        border-radius: 2rem;
-        transform: translate(30rem, 15rem);
-    }
+  &__nine {
+    @include tileProperties(translate(30rem, 15rem), nine);
+  }
 }
-
-    .sectionThree {
-        display: grid;
-        width: 90vw;
-        height: 80vh;
-        margin: 2vh 5vw 2vh 5vw;
-        background-color: transparent;
-    }

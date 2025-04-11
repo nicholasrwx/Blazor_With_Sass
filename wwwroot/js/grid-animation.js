@@ -12,7 +12,6 @@ window.scrollToAnimate = (elementSelector) => {
                     entry.target.classList.remove(dismissTiles);
                 }
                 entry.target.classList.add(summonTiles);
-                // observer.unobserve(entry.target);
             } else if (!entry.isIntersecting & entry.target.classList.contains(summonTiles)) {
                 entry.target.classList.remove(summonTiles);
                 entry.target.classList.add(dismissTiles);
@@ -25,3 +24,4 @@ window.scrollToAnimate = (elementSelector) => {
     observer.observe(gridElement);
   }
 };
+
