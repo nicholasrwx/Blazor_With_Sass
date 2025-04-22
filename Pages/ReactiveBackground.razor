@@ -1,7 +1,36 @@
 @page "/reactivebackground"
+@inject IJSRuntime JSRuntime
 
 <PageTitle>Reactive Background</PageTitle>
-
 <h1>Reactive Background</h1>
+<div class="reactiveGrid">
+<section class="reactiveElement" id="reactElement">
+<div class="movingContainer" id="container">
+    <div class="movingBlock" id="block"></div>
+</div>
+</section>
+<section class="reactiveBackground" id="reactBackground">
+<div class="reactiveContainer-1" id="rc1">
+    <div class="block-1" id="b1"></div>
+</div>
+<div class="reactiveContainer-2" id="rc2">
+    <div class="block-2" id="b2"></div>
+</div>
+<div class="reactiveContainer-3" id="rc3">
+    <div class="block-3" id="b3"></div>
+</div>
+<div class="reactiveContainer-4" id="rc4">
+    <div class="block-4" id="b4"></div>
+</div>
+</section>
+</div>
 
-@code {}
+@code {
+ protected override async Task OnAfterRenderAsync(bool firstRender)
+ {
+     if (firstRender) {
+         await JSRuntime.InvokeVoidAsync("createElementListener");
+         await JSRuntime.InvokeVoidAsync("createBackgroundListener");     
+     }
+  }
+}
