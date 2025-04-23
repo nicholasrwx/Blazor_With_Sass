@@ -1,3 +1,4 @@
+// move a single element in relation to mouse movement across it's container
 function createElementListener() {
   const container = document.getElementById("container");
   const block = document.getElementById("block");
@@ -24,7 +25,6 @@ function createElementListener() {
     const positionX = Math.round(e.clientX - rectCont.left - blockWidth / 2);
     const positionY = Math.round(e.clientY - rectCont.top - blockHeight / 2);
 
-    //
     if (positionX >= 0 && positionX < maxWidth) {
       container.style.setProperty("--pos-x", `${positionX}px`);
     }
@@ -32,13 +32,10 @@ function createElementListener() {
     if (positionY >= 0 && positionY < maxHeight) {
       container.style.setProperty("--pos-y", `${positionY}px`);
     }
-    console.log(`X: ${positionX}, Y: ${positionY}`);
   });
-
-  // Moving blocks in relation to their respective containers
-  // Based on mouse movements outside those containers
 }
 
+// move elements, within their respective containers, in relation to mouse movement across the entire screen
 function createBackgroundListener() {
   const background = document.getElementById("reactBackground");
   const reactiveContainer = document.getElementById("rc1");
@@ -48,47 +45,39 @@ function createBackgroundListener() {
   const block4 = document.getElementById("b4");
 
   background.addEventListener("mousemove", function (e) {
-    const backgroundDimensions = background.getBoundingClientRect();
-    const containerDimensions = reactiveContainer.getBoundingClientRect();
-    const blockDimensions = block.getBoundingClientRect();
+    // Required for top / left / bottom / right attributes
+    const backgroundRect = background.getBoundingClientRect();
 
-    // calculate background to container width and height ratios
-    const backgroundPercentX = Math.round(backgroundDimensions.width / 100);
-    const backgroundPercentY = Math.round(backgroundDimensions.height / 100);
-    const containerPercentX = Math.round(containerDimensions.width / 100);
-    const containerPercentY = Math.round(containerDimensions.height / 100);
-
-    // block dimensions ratio in relation to background
-    const blockWidthRatio = Math.round(
-      (blockDimensions.width / containerDimensions.width) *
-        100 *
-        backgroundPercentX
-    );
-    const blockHeightRatio = Math.round(
-      (blockDimensions.height / containerDimensions.height) *
-        100 *
-        backgroundPercentY
-    );
+    // required for computed areas without borders, or to get border sizes dynamically
+    const backgroundDimensions = getComputedStyle(background);
+    const containerDimensions = getComputedStyle(reactiveContainer);
+    const blockDimensions = getComputedStyle(block);
 
     // calculate container boundaries
-    const maxWidth = Math.round(backgroundDimensions.width);
-    const maxHeight = Math.round(backgroundDimensions.height);
+    const maxWidth = Math.round(parseFloat(backgroundDimensions.width));
+    const maxHeight = Math.round(parseFloat(backgroundDimensions.height));
 
     // mouse position in relation to background
-    const positionX = Math.round(e.clientX - backgroundDimensions.left);
-    const positionY = Math.round(e.clientY - backgroundDimensions.top);
+    const positionX = Math.round(e.clientX - backgroundRect.left);
+    const positionY = Math.round(e.clientY - backgroundRect.top);
 
-    //increment multiplier for block movement within container
-    const percentageMovedX = Math.round(
-      (positionX / backgroundDimensions.width) * 100
-    );
-    const percentageMovedY = Math.round(
-      (positionY / backgroundDimensions.height) * 100
-    );
+    // increment multiplier for block movement within container
+    const percentageMovedX = Math.round((positionX / maxWidth) * 100);
+    const percentageMovedY = Math.round((positionY / maxHeight) * 100);
 
-    // blcok position within the container
-    const blockPositionX = Math.round(containerPercentX * percentageMovedX);
-    const blockPositionY = Math.round(containerPercentY * percentageMovedY);
+    // block position within the container
+    const blockPositionX = Math.round(
+      (percentageMovedX *
+        (parseFloat(containerDimensions.width) -
+          parseFloat(blockDimensions.width))) /
+        100
+    );
+    const blockPositionY = Math.round(
+      (percentageMovedY *
+        (parseFloat(containerDimensions.height) -
+          parseFloat(blockDimensions.height))) /
+        100
+    );
 
     // increment based on ratio
     if (positionX >= 0 && positionX < maxWidth) {
@@ -104,12 +93,5 @@ function createBackgroundListener() {
       block3.style.setProperty("--con-y", `${blockPositionY}px`);
       block4.style.setProperty("--con-y", `${blockPositionY}px`);
     }
-
-    // calculate box boundaries
-    console.log(
-      `x: ${blockPositionX}, y: ${blockPositionY}, cWid: ${maxWidth}, cHei: ${maxHeight}`
-    );
   });
-
-  // you need to use a ratio to calculate movements
 }
